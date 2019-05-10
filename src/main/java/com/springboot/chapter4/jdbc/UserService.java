@@ -3,18 +3,14 @@ package com.springboot.chapter4.jdbc;
 import com.springboot.chapter4.pojo.User;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 @Component
 @Service
 public class UserService {
-    public int insertUser() {
+    public int insertUser(User user) {
         UserDao userDao = new UserDao();
-        User user = new User();
-        user.setUserName("user_name_1");
-        user.setNote("note_1");
         Connection conn = null;
         int result = 0;
         try {

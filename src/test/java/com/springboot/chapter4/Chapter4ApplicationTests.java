@@ -2,6 +2,7 @@ package com.springboot.chapter4;
 
 import com.springboot.chapter4.intercept.MyInterceptor;
 import com.springboot.chapter4.jdbc.UserService;
+import com.springboot.chapter4.pojo.User;
 import com.springboot.chapter4.proxy.ProxyBean;
 import com.springboot.chapter4.service.HelloService;
 import com.springboot.chapter4.service.impl.HelloServiceImpl;
@@ -11,6 +12,8 @@ import org.springframework.aop.framework.ProxyFactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.UUID;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -34,7 +37,11 @@ public class Chapter4ApplicationTests {
 
     @Test
     public void testInsertUser() {
-        userService.insertUser();
+        User user = new User();
+        user.setId(UUID.randomUUID().toString().replace("-", ""));
+        user.setUserName("张三");
+        user.setNote("note_2");
+        userService.insertUser(user);
     }
 
 }
