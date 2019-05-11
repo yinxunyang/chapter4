@@ -1,5 +1,6 @@
 package com.springboot.chapter4.aspect;
 
+import com.springboot.chapter4.aspect.validator.UserValidator;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
@@ -7,10 +8,15 @@ import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.DeclareParents;
 import org.aspectj.lang.annotation.Pointcut;
 
 @Aspect
 public class MyAspect {
+    @DeclareParents(value = "com.springboot.chapter4.aspect.service.impl.UserServiceImpl",
+            defaultImpl = com.springboot.chapter4.aspect.validator.impl.UserValidatorImpl.class)
+    public UserValidator userValidator;
+
     @Pointcut("execution( * com.springboot.chapter4.aspect.service.impl.UserServiceImpl.printUser(..))")
     public void pointcut() {
     }
@@ -41,4 +47,6 @@ public class MyAspect {
         jp.proceed();
         System.out.println("around after......");
     }
+
+
 }
