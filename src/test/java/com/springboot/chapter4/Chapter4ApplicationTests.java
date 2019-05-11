@@ -27,11 +27,7 @@ public class Chapter4ApplicationTests {
 
     @Test
     public void testUserService() {
-        User user = new User();
-        user.setId("123");
-        user.setNote("note_1");
-        user.setUserName("user_name");
-        userService.printUser(user);
+
     }
 
 }
